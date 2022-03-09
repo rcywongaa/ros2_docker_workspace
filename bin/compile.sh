@@ -5,6 +5,7 @@ source "${DIR}"/config.sh
 
 rocker \
     --volume="${DIR}/..":"/${WORKSPACE_NAME}":rw \
+    --user \
     -- \
     "${IMAGE_NAME}" \
     "bash -c \"cd /${WORKSPACE_NAME} && colcon build\""

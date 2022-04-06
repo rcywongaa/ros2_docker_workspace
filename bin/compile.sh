@@ -8,7 +8,7 @@ rocker \
     --user \
     -- \
     "${IMAGE_NAME}" \
-    "bash -c \"cd /${WORKSPACE_NAME} && MAKEFLAGS=$@ colcon build\""
+    "bash -c \"cd /${WORKSPACE_NAME} && colcon build --cmake-args '-DCMAKE_EXPORT_COMPILE_COMMANDS=1 $@'\""
 # Note this only limit the number of threads per package.
 # Multiple packages may build in parallel using more threads than specified
 # See https://answers.ros.org/question/368249/colcon-build-number-of-threads/

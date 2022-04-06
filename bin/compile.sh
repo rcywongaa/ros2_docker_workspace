@@ -8,7 +8,10 @@ rocker \
     --user \
     -- \
     "${IMAGE_NAME}" \
-    "bash -c \"cd /${WORKSPACE_NAME} && colcon build\""
+    "bash -c \"cd /${WORKSPACE_NAME} && MAKEFLAGS=$@ colcon build\""
+# Note this only limit the number of threads per package.
+# Multiple packages may build in parallel using more threads than specified
+# See https://answers.ros.org/question/368249/colcon-build-number-of-threads/
 
 # docker run -it --net=host --gpus all \
 #     --env="NVIDIA_DRIVER_CAPABILITIES=all" \

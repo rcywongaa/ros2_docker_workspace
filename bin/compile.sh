@@ -3,14 +3,18 @@ DIR=$(dirname "$(readlink -f "$0")")
 
 source "${DIR}"/config.sh
 
+BUILD_ARGS="--cmake-args '-DCMAKE_EXPORT_COMPILE_COMMANDS=1'"
+
+if [ ! -z "$1" ]; then
+  BUILD_ARGS="--parallel-workers $1 --cmake-args '-DCMAKE_EXPORT_COMPILE_COMMANDS=1 -j$1'"
+fi
+
 rocker \
     --volume="${DIR}/..":"/${WORKSPACE_NAME}":rw \
     --user \
     -- \
     "${IMAGE_NAME}" \
-    "bash -c \"cd /${WORKSPACE_NAME} && colcon build --cmake-args '-DCMAKE_EXPORT_COMPILE_COMMANDS=1 $@'\""
-# Note this only limit the number of threads per package.
-# Multiple packages may build in parallel using more threads than specified
+    "bash -c \"cd /${WORKSPACE_NAME} && colcon build $BUILD_ARGS\""
 # See https://answers.ros.org/question/368249/colcon-build-number-of-threads/
 
 # docker run -it --net=host --gpus all \

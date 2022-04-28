@@ -15,6 +15,11 @@ ARG ROS_DISTRO
 ENV TZ=Etc/UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+# Update .bashrc
+# This must be w.r.t. where build.bash.sh is called, i.e. in the project root
+COPY ["bin/extra_bashrc.sh", "/"]
+RUN echo "source /extra_bashrc.sh" > /etc/bash.bashrc
+
 RUN \
     --mount=type=bind,target=/${WORKSPACE_NAME} \
     --mount=type=cache,target=/var/cache/apt \

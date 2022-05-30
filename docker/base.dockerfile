@@ -26,8 +26,6 @@ RUN \
     --mount=type=cache,target=/var/lib/apt \
     apt update \
     && apt upgrade -y \
-    && apt install -y python3.9-dev \
     && rosdep update \
     && rosdep install -iy --rosdistro ${ROS_DISTRO} --from-paths /${WORKSPACE_NAME}
-# python3.9-dev manually installed until https://discourse.ros.org/t/preparing-for-rolling-sync-delayed-by-python-3-10-transition/24521/4 resolved
 ENTRYPOINT ["/ros_entrypoint.sh"]

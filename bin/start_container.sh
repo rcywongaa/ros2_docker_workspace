@@ -7,7 +7,6 @@ rocker \
     --nvidia \
     --x11 \
     --volume="${DIR}/..":"/${WORKSPACE_NAME}":rw \
-    --nocleanup \
     --user \
     --name "${CONTAINER_NAME}" \
     -- \

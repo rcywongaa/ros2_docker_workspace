@@ -11,12 +11,15 @@ FROM ros:$ROS_DISTRO
 ARG WORKSPACE_NAME
 ARG ROS_DISTRO
 
+WORKDIR /${WORKSPACE_NAME}
+
 # Fix upgrade issues due to tzdata
 ENV TZ=Etc/UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Update .bashrc
 # This must be w.r.t. where build.bash.sh is called, i.e. in the project root
+COPY ["bin/config.sh", "/"]
 COPY ["bin/extra_bashrc.sh", "/"]
 RUN echo "source /extra_bashrc.sh" > /etc/bash.bashrc
 

@@ -29,6 +29,7 @@ RUN \
     --mount=type=cache,target=/var/lib/apt \
     apt update \
     && apt upgrade -y \
+    && apt install -y vim gdb\
     && rosdep update \
     && rosdep install -iy --ignore-src --rosdistro ${ROS_DISTRO} --from-paths .
 

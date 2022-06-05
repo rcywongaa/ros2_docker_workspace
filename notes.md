@@ -1,0 +1,1 @@
+- Do not `source /ros_entrypoint.sh` in your `.bashrc` because it contains `set -e` which causes bash to exit whenever a command fails

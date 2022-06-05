@@ -27,5 +27,5 @@ RUN \
     apt update \
     && apt upgrade -y \
     && rosdep update \
-    && rosdep install -iy --rosdistro ${ROS_DISTRO} --from-paths /${WORKSPACE_NAME}
-ENTRYPOINT ["/ros_entrypoint.sh"]
+    && rosdep install -iy --ignore-src --rosdistro ${ROS_DISTRO} --from-paths .
+

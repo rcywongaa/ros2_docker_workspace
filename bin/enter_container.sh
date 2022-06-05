@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DIR=$(dirname "$(readlink -f "$0")")
+DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )" &> /dev/null && pwd 2> /dev/null; )";
 
 source "${DIR}"/config.sh
 

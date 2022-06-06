@@ -3,7 +3,8 @@ DIR=$(dirname "$(readlink -f "$0")")
 
 source "${DIR}"/config.sh
 
-DEFAULT_CMAKE_ARGS=' -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug'
+# Remember to quote each arg, make sure quotes don't interfere with quoting in bash -c "..."
+DEFAULT_CMAKE_ARGS='" -DCMAKE_EXPORT_COMPILE_COMMANDS=1" " -DCMAKE_BUILD_TYPE=Debug"'
 BUILD_ARGS="--cmake-clean-cache --cmake-args $DEFAULT_CMAKE_ARGS"
 
 MAKE_CORES=
@@ -17,7 +18,7 @@ rocker \
     --user \
     -- \
     "${IMAGE_NAME}" \
-    "bash -c \"cd /${WORKSPACE_NAME} && MAKEFLAGS=-j$MAKE_CORES colcon build $BUILD_ARGS\""
+    "bash -c 'cd /${WORKSPACE_NAME} && MAKEFLAGS=-j$MAKE_CORES colcon build $BUILD_ARGS'"
 # See https://answers.ros.org/question/368249/colcon-build-number-of-threads/
 
 # docker run -it --net=host --gpus all \

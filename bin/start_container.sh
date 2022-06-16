@@ -9,6 +9,7 @@ rocker \
     --volume="${DIR}/..":"/${WORKSPACE_NAME}":rw \
     --user \
     --name "${CONTAINER_NAME}" \
+    --privileged \ # required for gdb
     -- \
     "${IMAGE_NAME}" \
     bash

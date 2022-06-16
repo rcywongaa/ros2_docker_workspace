@@ -29,7 +29,7 @@ RUN \
     --mount=type=cache,target=/var/lib/apt \
     apt update \
     && apt upgrade -y \
-    && apt install -y vim gdb\
+    && apt install -y vim gdb python3-pip\
     && rosdep update \
     && rosdep install -iy --ignore-src --rosdistro ${ROS_DISTRO} --from-paths .
 

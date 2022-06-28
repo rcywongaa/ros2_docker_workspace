@@ -1,0 +1,43 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug MoveIt",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/install/moveit_ros_move_group/lib/moveit_ros_move_group/move_group",
+
+      // Couldn't get this working yet
+      // See https://christianheilmann.com/2022/03/17/automatically-starting-a-server-when-starting-a-debug-session-in-vs-code/
+      // "environment": [
+      //   {"DEBUG": 1}
+      // ],
+      // "preLaunchTask": "Launch MoveIt Background",
+
+      "args": [],
+      // "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      // "miDebuggerArgs": "-p $(pidof move_group) -ex cont",
+      "miDebuggerServerAddress": "localhost:3000",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "setupCommands": [
+        {
+          "description": "Set up python pretty-printing for gdb",
+          "text": "python import sys;sys.path.insert(0, '/usr/share/gcc/python');from libstdcxx.v6.printers import register_libstdcxx_printers;register_libstdcxx_printers(None)",
+          "ignoreFailures": false
+        },
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

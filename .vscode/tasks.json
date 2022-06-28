@@ -1,0 +1,47 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Launch MoveIt",
+      "type": "shell",
+      "command": "source /${workspaceFolder}/install/setup.bash && ros2 launch dual_arm_husky_description main_launch.py",
+      "problemMatcher": [{
+        "pattern": [{
+          "regexp": ".",
+          "file": 1,"line": 1,
+          "column": 1,"message": 1
+        }],
+      }]
+    },
+
+    // Couldn't get background tasks to work properly with debug launch
+    // {
+    //   "label": "Launch MoveIt Background",
+    //   "type": "shell",
+    //   "isBackground": true,
+    //   "command": "source /${workspaceFolder}/install/setup.bash && ros2 launch dual_arm_husky_description main_launch.py",
+    //   "presentation": { "reveal": "silent" },
+    //   "problemMatcher": [{
+    //     "pattern": [{
+    //       "regexp": ".",
+    //       "file": 1,"line": 1,
+    //       "column": 1,"message": 1
+    //     }],
+    //     "background": {
+    //         "activeOnStart": true,
+    //         "beginsPattern": { "regexp": "." },
+    //         "endsPattern": { "regexp": "." }
+    //     },
+    //   }]
+    // },
+
+    // This leaves gazebo running while killing MoveIt, not ideal...
+    // {
+    //   "label": "Stop All",
+    //   "command": "${command:workbench.action.tasks.terminate}",
+    //   "args": ["terminateAll"]
+    // },
+  ]
+}

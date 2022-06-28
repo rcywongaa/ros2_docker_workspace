@@ -5,16 +5,16 @@ source "${DIR}"/config.sh
 
 # privileged is required for gdb
 
+# Do not run with --user to avoid host shell settings (e.g. zsh) from affecting container
 rocker \
-    --nvidia \
-    --x11 \
-    --volume="${DIR}/..":"/${WORKSPACE_NAME}":rw \
-    --user \
-    --name "${CONTAINER_NAME}" \
-    --privileged \
-    -- \
-    "${IMAGE_NAME}" \
-    bash
+  --nvidia \
+  --x11 \
+  --volume="${DIR}/..":"/${WORKSPACE_NAME}":rw \
+  --name "${CONTAINER_NAME}" \
+  --privileged \
+  -- \
+  "${IMAGE_NAME}" \
+  bash
 
 # Using
 # --volume="/etc/group:/etc/group:ro" \

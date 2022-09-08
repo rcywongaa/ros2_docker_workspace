@@ -1,0 +1,3 @@
+"build": {
+  "mixin": ["ccache", "debug", "asan-gcc", "compile-commands", "lld"]
+}

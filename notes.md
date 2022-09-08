@@ -1,1 +1,4 @@
 - Do not `source /ros_entrypoint.sh` in your `.bashrc` because it contains `set -e` which causes bash to exit whenever a command fails
+- [`.devcontainer.json`](https://aka.ms/vscode-remote/devcontainer.json) not used because we are starting the container with `rocker` via `bin/start_container.sh`
+  - There doesn't seem to be a way for vscode to automatically attach to a container without also having vscode start the container
+- [`rocker`](https://github.com/osrf/rocker) is used to avoid having to manually set up users, nvidia, graphics, etc.

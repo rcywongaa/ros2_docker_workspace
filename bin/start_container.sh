@@ -5,12 +5,15 @@ source "${DIR}"/config.sh
 
 # privileged is required for gdb
 
-# Do not run with --user to avoid host shell settings (e.g. zsh) from affecting container
+# Requires https://github.com/osrf/rocker/pull/185 to suppress the following warning
+# Warning: missing or non-executable shell '/bin/zsh'
 rocker \
   --nvidia \
   --x11 \
   --volume="${DIR}/..":"/${WORKSPACE_NAME}":rw \
   --name "${CONTAINER_NAME}" \
+  --user \
+  --user-override-shell='' \
   --privileged \
   -- \
   "${IMAGE_NAME}" \

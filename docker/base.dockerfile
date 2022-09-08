@@ -23,13 +23,36 @@ COPY ["bin/config.sh", "/"]
 COPY ["bin/extra_bashrc.sh", "/"]
 RUN echo "source /extra_bashrc.sh" > /etc/bash.bashrc
 
+# Use local rosdistro fork
+COPY ["docker/10-custom.list", "/etc/ros/rosdep/sources.list.d/"]
+
+# Install basic tools
+RUN \
+    --mount=type=cache,target=/var/cache/apt \
+    --mount=type=cache,target=/var/lib/apt \
+    apt update \
+    && apt upgrade -y \
+    && apt install -y zsh vim gdb python3-pip wget ccache lld xterm
+# zsh, vim, gdb, python3-pip for development
+# wget for installing drake
+# ccache, lld for faster builds
+# xterm for moveit demos
+
+# Install non-ROS dependencies first
+RUN \
+    --mount=type=cache,target=/var/cache/apt \
+    --mount=type=cache,target=/var/lib/apt \
+    wget https://drake-packages.csail.mit.edu/drake/nightly/drake-dev_latest-1_amd64-jammy.deb \
+    && apt update \
+    && apt install -y ./drake-dev_latest-1_amd64-jammy.deb
+
+# Install ROS dependencies
+# Remember to mount else rosdep won't find any dependencies!
 RUN \
     --mount=type=bind,target=/${WORKSPACE_NAME} \
     --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
     apt update \
-    && apt upgrade -y \
-    && apt install -y vim gdb python3-pip\
     && rosdep update \
-    && rosdep install -iy --ignore-src --rosdistro ${ROS_DISTRO} --from-paths .
+    && rosdep install -yr --ignore-src --rosdistro ${ROS_DISTRO} --from-paths .
 

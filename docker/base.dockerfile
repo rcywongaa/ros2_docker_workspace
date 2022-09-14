@@ -32,7 +32,7 @@ RUN \
     --mount=type=cache,target=/var/lib/apt \
     apt update \
     && apt upgrade -y \
-    && apt install -y zsh vim gdb python3-pip wget ccache lld xterm
+    && apt install -y zsh vim gdb gdbserver python3-pip wget ccache lld xterm
 # zsh, vim, gdb, python3-pip for development
 # wget for installing drake
 # ccache, lld for faster builds

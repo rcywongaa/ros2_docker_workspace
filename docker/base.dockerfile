@@ -23,9 +23,6 @@ COPY ["bin/config.sh", "/"]
 COPY ["bin/extra_bashrc.sh", "/"]
 RUN echo "source /extra_bashrc.sh" > /etc/bash.bashrc
 
-# Use local rosdistro fork
-COPY ["docker/10-custom.list", "/etc/ros/rosdep/sources.list.d/"]
-
 # Install basic tools
 RUN \
     --mount=type=cache,target=/var/cache/apt \
@@ -37,6 +34,11 @@ RUN \
 # wget for installing drake
 # ccache, lld for faster builds
 # xterm for moveit demos
+
+# Use custom rosdistro fork
+RUN \
+    wget https://raw.githubusercontent.com/rcywongaa/rosdistro/master/rosdep/sources.list.d/20-default.list -P /etc/ros/rosdep/sources.list.d/
+ENV ROSDISTRO_INDEX_URL="https://raw.githubusercontent.com/rcywongaa/rosdistro/master/index-v4.yaml"
 
 # Install non-ROS dependencies first
 RUN \

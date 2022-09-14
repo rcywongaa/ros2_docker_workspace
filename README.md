@@ -14,3 +14,10 @@
 1. Run `bin/enter_container.sh` to attach additional shells to the container
 1. (optional) Use `bin/compile.sh` to compile the code in the container
 
+# Debugging MoveIt
+1. Add `prefix="gdbserver localhost:3000"` to the `move_group` node launch description
+1. Recompile with `bin/compile.sh` if the launch file was changed
+1. Launch `move_group`
+1. Go to the "Run and Debug" tab in vscode
+1. Under "RUN AND DEBUG" dropdown, select "Debug MoveIt"
+1. Click the Play icon

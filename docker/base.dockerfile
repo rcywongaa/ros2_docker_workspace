@@ -54,5 +54,5 @@ RUN \
     --mount=type=cache,target=/var/lib/apt \
     apt update \
     && rosdep update \
-    && rosdep install -yr --ignore-src --rosdistro ${ROS_DISTRO} --from-paths .
+    && rosdep install -y --ignore-src --rosdistro ${ROS_DISTRO} --from-paths .
 

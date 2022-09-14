@@ -21,3 +21,8 @@
 1. Go to the "Run and Debug" tab in vscode
 1. Under "RUN AND DEBUG" dropdown, select "Debug MoveIt"
 1. Click the Play icon
+
+# Custom rosdep
+- <http://docs.ros.org/en/independent/api/rosdep/html/contributing_rules.html>
+- <http://docs.ros.org/en/ros2_documentation/rolling/Tutorials/Intermediate/Rosdep.html>
+- <https://github.com/ros-infrastructure/ros_buildfarm/blob/master/doc/custom_rosdistro.rst>

@@ -29,11 +29,17 @@ RUN \
     --mount=type=cache,target=/var/lib/apt \
     apt update \
     && apt upgrade -y \
-    && apt install -y zsh vim gdb gdbserver python3-pip wget ccache lld xterm
+    && apt install -y \
+    zsh vim gdb gdbserver python3-pip \
+    wget \
+    ccache lld \
+    xterm \
+    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp
 # zsh, vim, gdb, python3-pip for development
 # wget for installing drake
 # ccache, lld for faster builds
 # xterm for moveit demos
+# ros-${ROS_DISTRO}-rmw-cyclonedds-cpp due to https://answers.ros.org/question/115641/moveit-interactive-markers-missing/
 
 # Use custom rosdistro fork
 RUN \

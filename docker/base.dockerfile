@@ -24,6 +24,7 @@ COPY ["bin/extra_bashrc.sh", "/"]
 RUN echo "source /extra_bashrc.sh" > /etc/bash.bashrc
 
 # Install basic tools
+# FIXME: Fix hard coding of nvidia driver
 RUN \
     --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
@@ -34,6 +35,7 @@ RUN \
     wget \
     ccache lld \
     xterm \
+    nvidia-driver-550 \
     ros-${ROS_DISTRO}-rmw-cyclonedds-cpp
 # zsh, vim, gdb, python3-pip for development
 # wget for installing drake
